@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amor eterno Camila💖</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff4d4d, #ff6600, #ffcc00);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .game-container {
+            margin-top: 20px;
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            color: red;
+            font-size: 30px;
+            cursor: pointer;
+            animation: float 4s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        .corner-img {
+            position: absolute;
+        }
+        .top-left { top: 10px; left: 10px; width: 300px; height: 300px; }
+        .top-right { top: 10px; right: 10px; width: 200px; height: 200px; }
+        .bottom-left { bottom: 10px; left: 10px; width: 400px; height: 250px; }
+        .bottom-right { bottom: 10px; right: 10px; width: 400px; height: 250px; }
+        
+        .sparkle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, rgba(255, 165, 0, 1), rgba(255, 69, 0, 0.8));
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: fireEffect 2s infinite ease-in-out;
+        }
+        @keyframes fireEffect {
+            0% { transform: translateY(50px) scale(0.5); opacity: 0.8; }
+            50% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+            100% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <img src="https://media.discordapp.net/attachments/1197779053764169760/1339789492206309466/1d8fdd3bb2af25c189b8e1dd66825193.png?ex=67afffb3&is=67aeae33&hm=bbd59b3f42d9b17649b5fb538b5e251eeaef97b12dab63e75caa60471d5ba885&=&format=webp&quality=lossless&width=676&height=676" class="corner-img top-left">
+    <img src="https://media.discordapp.net/attachments/1197779053764169760/1339789605339271188/cb9f8f323e55b999595bd45aeb15af43.png?ex=67afffce&is=67aeae4e&hm=457c59055d56e7a09e47bd5103a306f024c81a230f38e9453c2a8bed6a4760c1&=&format=webp&quality=lossless&width=676&height=676" class="corner-img top-right">
+    <img src="https://media.discordapp.net/attachments/1197779053764169760/1339791115146100859/Screenshot_2025-02-13-21-47-28-411_com.mobile.legends.jpg?ex=67b00135&is=67aeafb5&hm=9757d8b811b2cc0e8531c36b023e3d534de6da267c196596106e7ec6534b69a3&=&format=webp&width=1440&height=648" class="corner-img bottom-left">
+    <img src="https://media.discordapp.net/attachments/1197779053764169760/1339791114848174100/Screenshot_2025-02-13-21-50-55-973_com.mobile.legends.jpg?ex=67b00135&is=67aeafb5&hm=be9906c71c79c826f5e0a1c0ce367e1318753d1aaeaaf50f98a1e6209a93a171&=&format=webp&width=1440&height=648" class="corner-img bottom-right">
+    <div class="container">
+        <h1 style="color: #f3093c;">           🌸 Feliz San Valentín mi princesa Camila! 🌸</h1>
+        <p>Eres la persona más especial y maravillosa que e conocido en este mundo. 🌷💕</p>
+        <p> Nunca dejare de amarte mi amorcito, siempre estare para ti como lo prometi "hasta el infinito y mas halla"</p>
+            <span style="color: #1df3be;">Completa el minijuego mi dormilona confio en ti jajaja</span>
+        </p>
+        <div class="game-container" id="heart-game">
+            <p id="heart-counter" style="color: #1df3be;">¡Toca los corazones! (0/10)</p>
+        </div>
+        <div class="game-container" id="question-game" style="display: none;">
+            <p> <span style="color: #f1530a;"> ¿Cuándo es nuestro día especial? (Formato: DD/MM)</span> </p>
+            <input type="text" id="answer" placeholder="para nada es: 16/02">
+            <button id="check-answer">Responder</button>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script>
+        let heartCount = 0;
+        let totalHearts = 20;
+        function startHeartGame() {
+            document.getElementById("heart-game").style.display = "block";
+            document.getElementById("heart-counter").textContent = `¡Toca los corazones! (${heartCount}/10)`;
+            for (let i = 0; i < totalHearts; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                document.body.appendChild(heart);
+                heart.style.top = Math.random() * window.innerHeight + "px";
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.addEventListener("click", function() {
+                    heart.remove();
+                    heartCount++;
+                    document.getElementById("heart-counter").textContent = `¡Toca los corazones! (${heartCount}/10)`;
+                    if (heartCount === 10) {
+                        document.getElementById('heart-game').style.display = 'none';
+                        document.getElementById('question-game').style.display = 'block';
+                    }
+                });
+            }
+        }
+        startHeartGame();
+
+        function createSparkles() {
+            for (let i = 0; i < 70; i++) {
+                let sparkle = document.createElement("div");
+                sparkle.classList.add("sparkle");
+                document.body.appendChild(sparkle);
+                sparkle.style.top = Math.random() * window.innerHeight + "px";
+                sparkle.style.left = Math.random() * window.innerWidth + "px";
+                sparkle.style.animationDuration = (Math.random() * 2 + 1) + "s";
+            }
+        }
+        createSparkles();
+
+        document.getElementById('check-answer').addEventListener('click', function() {
+            let answer = document.getElementById('answer').value;
+            if (answer === "16/02") {
+                document.getElementById('result').innerHTML = "🎉¡Correcto mi princesa siempre confie jaja, ! Te amo mucho mi niña 💖";
+            } else {
+                document.getElementById('result').innerHTML = "❌ ¡Ups! Inténtalo de nuevo.";
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
